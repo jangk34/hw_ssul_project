@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Customer from './components/Customer';
 import { Button } from 'reactstrap';
 
 // props는 부모에서 컴포넌트로 전달하기 위한 속성 -> ex) this.props.test
@@ -8,7 +9,7 @@ import { Button } from 'reactstrap';
 class Subject extends Component {
   render() { // 최신버전이므로 자바스크립트 펑션 생략
     return (
-      <header>
+        <header>
         <div classname="grey-background">
           <h1>{this.props.title}</h1>
           <h1>let's develop react</h1>  
@@ -53,6 +54,14 @@ class Content extends Component {
     );
   }
 }
+ 
+const customer = {
+  'name' : '장창근',
+  'birth' : '930103',
+  'gender' : '남자',
+  'job' : '리액트신'
+}
+
 
 class App extends Component { //App클래스를 만들고 react component를 상속받아 새로운 클래스 생성하고 그 클래스는 render를 가지고있다 // 탬플릿과같음
   state = { // 컨테츠를 TOC에게 전달
@@ -64,7 +73,7 @@ class App extends Component { //App클래스를 만들고 react component를 상
   }
   render() {
     return (
-
+      
       <div className="App">
       <Subject title="Web" sub="Hello, React"></Subject>
 
@@ -72,6 +81,11 @@ class App extends Component { //App클래스를 만들고 react component를 상
        <Content title="Lengend" desc="HTMl is for Hello" ></Content>
 
        <Button color="danger"> 신계입성 </Button>
+       <Customer name = {customer.name}
+       birth={customer.birth}
+       gender={customer.gender}
+       job={customer.job}
+       ></Customer>  
       </div>
     );
   }
