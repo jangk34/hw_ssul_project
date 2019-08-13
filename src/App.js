@@ -55,12 +55,30 @@ class Content extends Component {
   }
 }
  
-const customer = {
+const customers = [{
+  'id' : 18,
+  'image' : 'https://placeimg.com/64/64/any',
   'name' : '장창근',
   'birth' : '930103',
   'gender' : '남자',
   'job' : '리액트신'
-}
+},
+{
+  'id' : 5,
+  'image' : 'https://placeimg.com/64/64/2',
+  'name' : '이협건',
+  'birth' : '123123',
+  'gender' : '쓰레기',
+  'job' : '철밥통'
+},
+{
+  'id' : 3,
+  'image' : 'https://placeimg.com/64/64/3',
+  'name' : '김영운',
+  'birth' : '123123',
+  'gender' : '개새끼',
+  'job' : '철밥통'
+}]
 
 
 class App extends Component { //App클래스를 만들고 react component를 상속받아 새로운 클래스 생성하고 그 클래스는 render를 가지고있다 // 탬플릿과같음
@@ -81,11 +99,41 @@ class App extends Component { //App클래스를 만들고 react component를 상
        <Content title="Lengend" desc="HTMl is for Hello" ></Content>
 
        <Button color="danger"> 신계입성 </Button>
-       <Customer name = {customer.name}
-       birth={customer.birth}
-       gender={customer.gender}
-       job={customer.job}
+       {/* <Customer
+       name = {customer[0].name}
+       image = {customer[0].image}
+       id={customer[0].id}
+       birth={customer[0].birth}
+       gender={customer[0].gender}
+       job={customer[0].job}
        ></Customer>  
+        <Customer
+       name = {customer[1].name}
+       image = {customer[1].image}
+       id={customer[1].id}
+       birth={customer[1].birth}
+       gender={customer[1].gender}
+       job={customer[1].job}
+       ></Customer>  
+        <Customer
+       name = {customer[2].name}
+       image = {customer[2].image}
+       id={customer[2].id}
+       birth={customer[2].birth}
+       gender={customer[2].gender}
+       job={customer[2].job}
+       ></Customer>    */}
+
+       {
+         customers.map(c => { return( <Customer key={c.id} id={c.id} image={c.image} name={c.name}
+             birth={c.birth}
+             gender={c.gender}
+             job={c.job}
+             />
+           )
+         })
+       }
+    
       </div>
     );
   }
