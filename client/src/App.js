@@ -24,32 +24,26 @@ const styles = theme => ({
   }
 })
 
-const customers = [{
-  'id': 1,
-  'image': 'https://placeimg.com/64/64/any',
-  'name': '장창근',
-  'birth': '930103',
-  'gender': '남자',
-  'job': '리액트신'
-},
-{
-  'id': 5,
-  'image': 'https://placeimg.com/64/64/2',
-  'name': '김박',
-  'birth': '123123',
-  'gender': '오리',
-  'job': '철밥통'
-},
-{
-  'id': 3,
-  'image': 'https://placeimg.com/64/64/3',
-  'name': '영니',
-  'birth': '123123',
-  'gender': '만리',
-  'job': '다이어트'
-}]
-
 class App extends Component { //App클래스를 만들고 react component를 상속받아 새로운 클래스 생성하고 그 클래스는 render를 가지고있다 // 탬플릿과같음 
+ 
+  state = {
+    customers: ""
+  }
+
+  componentDidMount() {
+    this.callApi()
+      .then(res => this.setState({customers: res}))
+      .catch(err => console.log(err));
+    }
+  
+
+  callApi = async () => {
+    const response = await fetch('/api/customers'); // 밑에서 위로
+    const body = await response.json();  // 5000 에서 내용을 불러와 json형태로 변환하여 body함수에 담음 -> 전달
+    return body;  //body 변수에 담음
+  }
+ // state는 변수 변경 o
+  //props는 변경 x
   render() {
     const { classes } = this.props;
     return (
@@ -66,7 +60,8 @@ class App extends Component { //App클래스를 만들고 react component를 상
             </TableRow>
           </TableHead>
         <TableBody> 
-            { customers.map(c => { return ( <Customer key={c.id} id={c.id} image={c.image} name={c.name} birth={c.birth} gender={c.gender} job={c.job}/>);})}
+            {this.state.customers ? this.state.customers.map(c => { 
+              return ( <Customer key={c.id} id={c.id} image={c.image} name={c.name} birth={c.birth} gender={c.gender} job={c.job}/>);}) : "" }
             </TableBody>
         </Table>
      </Paper>
