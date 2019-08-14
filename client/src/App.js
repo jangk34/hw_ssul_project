@@ -46,7 +46,7 @@ const customers = [{
   'name': '영니',
   'birth': '123123',
   'gender': '만리',
-  'job': '철밥통'
+  'job': '다이어트'
 }]
 
 class App extends Component { //App클래스를 만들고 react component를 상속받아 새로운 클래스 생성하고 그 클래스는 render를 가지고있다 // 탬플릿과같음 
