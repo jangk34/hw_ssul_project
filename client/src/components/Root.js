@@ -4,8 +4,6 @@ import { Component,Fragment } from 'react';
 
 import { Switch,Route } from 'react-router-dom';
 
-
-
 import Top from './mainPage/Top';
 
 import Body from './mainPage/Body';

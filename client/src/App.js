@@ -53,14 +53,14 @@ class App extends Component { //App클래스를 만들고 react component를 상
 
   componentDidMount() {  // api를 불러와서 웹사이트 화면에 특정한 뷰를 출력하려고할때 마운트에서 api를 비동기적으로 호출
     this.timer = setInterval(this.progress, 20);  // 타이머로 0.02초마다 프로그래스 함수 실행
-    // this.callApi()
-    //   .then(res => this.setState({customers: res})) // 응답이 돌아온후 상태변화
-    //   .catch(err => console.log(err));
+     this.callApi()
+    .then(res => this.setState({customers: res})) // 응답이 돌아온후 상태변화
+     .catch(err => console.log(err));
     }
   
 
   callApi = async () => {
-    const response = await fetch('/api/customers'); // 밑에서 위로
+    const response = await fetch('/api/DB_SSUL'); // 밑에서 위로
     const body = await response.json();  // 5000 에서 내용을 불러와 json형태로 변환하여 body함수에 담음 -> 전달
     return body;  //body 변수에 담음
   }
@@ -78,7 +78,8 @@ class App extends Component { //App클래스를 만들고 react component를 상
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <TableCell> 번호 </TableCell>
+              <TableCell> 유저 번호 </TableCell>
+              <TableCell> 아이디 </TableCell>
               <TableCell> 이미지 </TableCell>
               <TableCell> 이름 </TableCell>
               <TableCell> 생년월일 </TableCell>
@@ -88,7 +89,7 @@ class App extends Component { //App클래스를 만들고 react component를 상
           </TableHead>
         <TableBody>  
             {this.state.customers ? this.state.customers.map(c => {  // api 응답결과를 출력 , 응답 하지못한다면 로딩화면 출력
-              return ( <Customer key={c.id} id={c.id} image={c.image} name={c.name} birth={c.birth} gender={c.gender} job={c.job}/>);
+              return ( <Customer key={c.USER_SEQ} seq={c.USER_SEQ} id={c.USER_ID} image={c.IMAGE} name={c.USER_NAME} birth={c.USER_BIRTH} gender={c.USER_GEN} job={c.USER_JOB}/>);
             }) : 
               <TableRow>
                 <TableCell colSpan="6" align="center">
